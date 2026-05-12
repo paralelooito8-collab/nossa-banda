@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oitav° Paralelo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808;
+    --red: #c0392b;
+    --red2: #e74c3c;
+    --white: #f0ede8;
+    --muted: #555;
+    --card: #111;
+    --border: #1e1e1e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem 4rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* animated noise */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* vertical red stripe */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--red) 0%, transparent 60%);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    animation: drop 0.7s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 2px solid var(--red);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .avatar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 40% 30%, rgba(192,57,43,0.4), transparent 70%);
+  }
+
+  .avatar-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    position: relative;
+    letter-spacing: 0.05em;
+  }
+
+  /* spinning ring */
+  .avatar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px dashed rgba(192,57,43,0.4);
+    animation: spin 12s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .band-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .band-name sup {
+    font-size: 1rem;
+    color: var(--red2);
+    vertical-align: super;
+  }
+
+  .band-genre {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+
+  .band-location {
+    font-size: 0.65rem;
+    color: var(--red2);
+    letter-spacing: 0.15em;
+    margin-top: 0.3rem;
+  }
+
+  .band-location::before { content: '📍 '; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.3;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--muted);
+  }
+  .divider span {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── LINKS ── */
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .link-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.2s;
+    animation: slideUp 0.5s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  .link-item:hover {
+    border-color: var(--red);
+    transform: translateX(4px);
+  }
+
+  .link-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--red2);
+    transform: scaleY(0);
+    transition: transform 0.25s;
+    transform-origin: bottom;
+  }
+
+  .link-item:hover::before { transform: scaleY(1); }
+
+  /* shimmer on hover */
+  .link-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(192,57,43,0.06), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+
+  .link-item:hover::after { transform: translateX(100%); }
+
+  .link-icon {
+    font-size: 1.2rem;
+    width: 28px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .link-body { flex: 1; }
+
+  .link-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red2);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .link-title {
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .link-arrow {
+    font-size: 0.8rem;
+    opacity: 0.3;
+    transition: opacity 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .link-item:hover .link-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+    color: var(--red2);
+  }
+
+  /* stagger */
+  .link-item:nth-child(1) { animation-delay: 0.1s; }
+  .link-item:nth-child(2) { animation-delay: 0.18s; }
+  .link-item:nth-child(3) { animation-delay: 0.26s; }
+  .link-item:nth-child(4) { animation-delay: 0.34s; }
+  .link-item:nth-child(5) { animation-delay: 0.42s; }
+  .link-item:nth-child(6) { animation-delay: 0.50s; }
+
+  /* featured link (EP) */
+  .link-item.featured {
+    background: rgba(192,57,43,0.08);
+    border-color: rgba(192,57,43,0.35);
+  }
+
+  .link-item.featured .link-label { color: var(--red2); }
+
+  .badge {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: var(--white);
+    padding: 0.15rem 0.5rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    animation: drop 1s ease 0.6s both;
+    opacity: 0.5;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes drop {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="avatar">
+      <div class="avatar-ring"></div>
+      <span class="avatar-text">8°</span>
+    </div>
+    <h1 class="band-name">Oitav<sup>°</sup> Paralelo</h1>
+    <p class="band-genre">Indie · Grunge · Metal · Emo</p>
+    <p class="band-location">Planaltina, Goiás — Brasil</p>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider"><span>links</span></div>
+
+  <!-- LINKS -->
+  <div class="links">
+
+    <a class="link-item featured"
+       href="https://www.instagram.com/reel/DHlj1tBAJ2t/?igsh=MWZ0NWs0d3hyNHM5OA=="
+       target="_blank" rel="noopener">
+      <span class="link-icon">🎵</span>
+      <div class="link-body">
+        <span class="link-label">EP em gravação <span class="badge">novo</span></span>
+        <span class="link-title">Ouça "Dualidade"</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a class="link-item"
+       href="https://www.instagram.com/paralelo_oito_oficial?igsh=cDYwMmJsOGQ5OWtv&utm_source=qr"
+       target="_blank" rel="noopener">
+      <span class="link-icon">📸</span>
+      <div class="link-body">
+        <span class="link-label">Instagram</span>
+        <span class="link-title">@paralelo_oito_oficial</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a class="link-item"
+       href="https://www.youtube.com/@OitavoParalelo"
+       target="_blank" rel="noopener">
+      <span class="link-icon">▶️</span>
+      <div class="link-body">
+        <span class="link-label">YouTube</span>
+        <span class="link-title">Canal Oitav° Paralelo</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a class="link-item"
+       href="https://www.facebook.com/share/18Zsa4BGqP/?mibextid=wwXIfr"
+       target="_blank" rel="noopener">
+      <span class="link-icon">📘</span>
+      <div class="link-body">
+        <span class="link-label">Facebook</span>
+        <span class="link-title">Oitav° Paralelo</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a class="link-item"
+       href="https://wa.me/5561991108741"
+       target="_blank" rel="noopener">
+      <span class="link-icon">💬</span>
+      <div class="link-body">
+        <span class="link-label">WhatsApp — Contato / Booking</span>
+        <span class="link-title">(61) 99110-8741</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a class="link-item"
+       href="mailto:paralelooito8@gmail.com">
+      <span class="link-icon">✉️</span>
+      <div class="link-body">
+        <span class="link-label">E-mail</span>
+        <span class="link-title">paralelooito8@gmail.com</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">Oitav° Paralelo · Rock Underground · 2023</div>
+
+</div>
+</body>
+</html>
