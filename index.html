@@ -216,10 +216,20 @@
   .link-item:hover::after { transform: translateX(100%); }
 
   .link-icon {
-    font-size: 1.2rem;
     width: 28px;
+    min-width: 28px;
     text-align: center;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .link-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
   }
 
   .link-body { flex: 1; }
@@ -374,7 +384,7 @@
     <a class="link-item"
        href="https://www.instagram.com/paralelo_oito_oficial?igsh=cDYwMmJsOGQ5OWtv&utm_source=qr"
        target="_blank" rel="noopener">
-      <span class="link-icon">📸</span>
+      <span class="link-icon"><img src="itg.ico" alt="Instagram"></span>
       <div class="link-body">
         <span class="link-label">Instagram</span>
         <span class="link-title">@paralelo_oito_oficial</span>
@@ -385,7 +395,7 @@
     <a class="link-item"
        href="https://www.youtube.com/@OitavoParalelo"
        target="_blank" rel="noopener">
-      <span class="link-icon">▶️</span>
+      <span class="link-icon"><img src="ytb.ico" alt="YouTube"></span>
       <div class="link-body">
         <span class="link-label">YouTube</span>
         <span class="link-title">Canal Oitav° Paralelo</span>
@@ -396,7 +406,7 @@
     <a class="link-item"
        href="https://www.facebook.com/share/18Zsa4BGqP/?mibextid=wwXIfr"
        target="_blank" rel="noopener">
-      <span class="link-icon">📘</span>
+      <span class="link-icon"><img src="fb.ico" alt="Facebook"></span>
       <div class="link-body">
         <span class="link-label">Facebook</span>
         <span class="link-title">Oitav° Paralelo</span>
@@ -407,7 +417,7 @@
     <a class="link-item"
        href="https://www.tiktok.com/@ralphstravels/video/7638886955639393557?_r=1&_t=ZS-96IBSak85Dx"
        target="_blank" rel="noopener">
-      <span class="link-icon">🎵</span>
+      <span class="link-icon"><img src="tkt.ico" alt="Single"></span>
       <div class="link-body">
         <span class="link-label">Single</span>
         <span class="link-title">Ouça nosso single "Biological Being"</span>
@@ -418,7 +428,7 @@
     <a class="link-item"
        href="https://wa.me/5561991108741"
        target="_blank" rel="noopener">
-      <span class="link-icon">💬</span>
+      <span class="link-icon"><img src="wpp.ico" alt="WhatsApp"></span>
       <div class="link-body">
         <span class="link-label">WhatsApp — Contato / Booking</span>
         <span class="link-title">(61) 99110-8741</span>
@@ -428,7 +438,7 @@
 
     <a class="link-item"
        href="mailto:paralelooito8@gmail.com">
-      <span class="link-icon">✉️</span>
+      <span class="link-icon"><img src="gm.ico" alt="E-mail"></span>
       <div class="link-body">
         <span class="link-label">E-mail</span>
         <span class="link-title">paralelooito8@gmail.com</span>
