@@ -190,80 +190,6 @@
     transform: translateX(4px);
   }
 
-  .link-item.details,
-  .link-item.history-toggle {
-    display: block;
-    padding: 0;
-    background: transparent;
-    border: none;
-    animation: none;
-  }
-
-  .history-toggle summary {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.2rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--white);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.25s, transform 0.2s;
-    list-style: none;
-  }
-
-  .history-toggle summary:hover {
-    border-color: var(--red);
-    transform: translateX(4px);
-  }
-
-  .history-toggle::before,
-  .history-toggle::after {
-    display: none;
-  }
-
-  .history-toggle summary::-webkit-details-marker,
-  .history-toggle summary::marker {
-    display: none;
-  }
-
-  .history-content {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-top: none;
-    padding: 1rem 1.2rem 1.2rem;
-    color: var(--white);
-    line-height: 1.6;
-  }
-
-  .history-content p,
-  .history-content ul {
-    margin-top: 0.8rem;
-  }
-
-  .history-content ul {
-    padding-left: 1.2rem;
-  }
-
-  .history-content li {
-    margin-top: 0.35rem;
-  }
-
-  .history-content a {
-    color: var(--red2);
-    text-decoration: none;
-  }
-
-  .history-content a:hover {
-    text-decoration: underline;
-  }
-
-  .history-toggle[open] .link-arrow {
-    transform: rotate(90deg);
-  }
-
   .link-item::before {
     content: '';
     position: absolute;
@@ -491,7 +417,7 @@
     <a class="link-item"
        href="https://music.amazon.com.br/artists/B0GTRHSG1C/oitav%25C2%25BA-paralelo?marketplaceId=A2Q3Y263D00KWC&musicTerritory=BR&ref=dm_sh_TPZYYmyCqPpqlq07TdbUJ0mJP"
        target="_blank" rel="noopener">
-      <span class="link-icon"><img src="amazon.jpg" alt="Amazon Music"></span>
+      <span class="link-icon"><img src="amazon.ico" alt="Amazon Music"></span>
       <div class="link-body">
         <span class="link-label">Amazon Music</span>
         <span class="link-title">Oitav° Paralelo</span>
@@ -541,26 +467,6 @@
       </div>
       <span class="link-arrow">→</span>
     </a>
-
-    <details class="link-item history-toggle">
-      <summary>
-        <span class="link-icon"><img src="https://cdn.simpleicons.org/guitar/ffffff" alt="Nossa História"></span>
-        <div class="link-body">
-          <span class="link-label">Nossa História</span>
-          <span class="link-title">Clique para expandir</span>
-        </div>
-        <span class="link-arrow">→</span>
-      </summary>
-      <div class="history-content">
-        <p>O início da trajetória foi marcado por ensaios intensificados na garagem e pelas primeiras apresentações no circuito underground do Entorno do Distrito Federal. Inicialmente conquistando o público com interpretações enérgicas de clássicos dessas grandes referências, a banda rapidamente converteu sua sinergia de palco em combustível para a composição autoral.</p>
-        <p>Atualmente, a Oitavo Paralelo se consolida no mercado com uma formação potente em <strong>Power Trio</strong>, onde todos os integrantes dividem a responsabilidade dos arranjos e das frentes vocais, garantindo um som cru, direto e extremamente preenchido. A banda é composta pelos músicos:</p>
-        <ul>
-          <li><strong><a href="https://www.instagram.com/hayatte_01?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Magno Hayatte</a></strong> (Bateria e Vocal)</li>
-          <li><strong><a href="https://www.instagram.com/weverson_castro?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Weverson Castro</a></strong> (Baixo e Vocal)</li>
-          <li><strong><a href="https://www.instagram.com/ralph_error/" target="_blank" rel="noopener">Felipe Santiago</a></strong> (Guitarra e Vocal)</li>
-        </ul>
-      </div>
-    </details>
 
   </div>
 
